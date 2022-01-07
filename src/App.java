@@ -27,6 +27,7 @@ public class App {
     public static long start = System.nanoTime();
     public static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new Date());
     public static PrintWriter writer;
+    public static ExecutorService es = Executors.newCachedThreadPool();
     public static String mcServerInfo(String inputJson) { //This impletation might be added in a future update
         Matcher m = Pattern.compile(":\\{\"name\":\"([^)]+)\",\"p").matcher(json); //this extracts the server version, and player count from a json String
         String output = "";
@@ -62,12 +63,18 @@ public class App {
         countUp++;
             System.out.println("Querying Server... "+(countUp-1)+"/"+limit);
             //if (countUp >= limit) {
+                
                 if ((countUp + countUp /20) >= limit) {
                 long total = (System.nanoTime() - start) / 1000000;
                 System.out.println("total time: " + total);
                 writer.close();
                 System.out.println("Created Log file \"Output Log "+timeStamp+"\"");
                 System.out.print("Scanning Successful! Scanned ");
+                GUI.f.add(GUI.exitLabel);
+                GUI.thePanel.setVisible(false);
+                try {
+                    internalMCHandShake(inputIp, inputPort); // this is to wait a small bit, cause thread.sleep was giving issues
+                } catch (IOException e) {}
                 System.exit(0);
             }
     }
@@ -158,7 +165,6 @@ public class App {
         Thread.sleep(1000);
         final CountDownLatch latch = new CountDownLatch(3);
         start = System.nanoTime();
-        ExecutorService es = Executors.newCachedThreadPool();
         System.out.println("Confirmed, Scanning "+App.limit+" Servers on "+App.startIP+":"+App.startPort+" On "+GUI.scanSpeed+" Speed. Only print online Servers? "+GUI.onlyPrintOnlineServers);
         Runnable runnable = new Runnable() {
             public void run() {
