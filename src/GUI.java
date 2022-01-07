@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -9,6 +8,8 @@ import java.util.regex.Pattern;
 public class GUI    
 {   public static JFrame f= new JFrame("MC Scanner");  
     public static JLabel ipLabel = new JLabel("IP:");
+    //public static JLabel exiLabel = new JLabel("Scan Complete! File saved to \n"+GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+    public static JLabel exitLabel = new JLabel("<html><body>Scan Complete! File saved to <br>"+GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0, 36)+"<br>"+GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(36)+"</body></html>");
     public static JLabel portLabel = new JLabel("Start Port:");  
     public static JLabel speedLabel = new JLabel("Scan Speed:");
     public static JLabel amountLabel = new JLabel("AMT To Scan:"); 
@@ -39,6 +40,7 @@ public class GUI
         onlineCB.setBounds(0,44, 190,19);    
         onlineCB.setSelected(true); 
         onlineCB.setFocusable(false);
+        exitLabel.setBounds(10,25, 200,20);
         ipBox.setBounds(25,5, 130,20);    
         ipBox.setCaretColor(Color.BLACK);
         ipBox.setToolTipText("Enter The IP to Scan!"); 
@@ -55,6 +57,7 @@ public class GUI
         portBox.setText("Enter Start Port"); portBox.setForeground(Color.LIGHT_GRAY);   
         ipBox.setText("Enter Server IP"); ipBox.setForeground(Color.LIGHT_GRAY);
         onlineCB.setOpaque(false);
+        
         thePanel.add(scanProgress);thePanel.add(amountBox); thePanel.add(amountLabel);thePanel.add(startButton);thePanel.add(speedLabel);thePanel.add(speedDropDown);thePanel.add(onlineCB); thePanel.add(ipLabel); thePanel.add(ipBox); thePanel.add(portBox);thePanel.add(portLabel);
         onlineCB.addItemListener(new ItemListener() {    
              public void itemStateChanged(ItemEvent e) {                      
@@ -157,6 +160,7 @@ public class GUI
         Image icon = Toolkit.getDefaultToolkit().getImage("src\\icon.png");  
         f.setIconImage(icon);
         f.setVisible(true);
+        //exiLabel.setVisible(true);
         thePanel.setVisible(true);
         f.setLocationRelativeTo(null);  
          
