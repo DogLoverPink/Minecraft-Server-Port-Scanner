@@ -5,7 +5,7 @@ Minecraft Server Port Scanner is a blazing fast server scanner that is very simi
 MSPS utilizes (potentially unstable) multithreading to ensure very super high speed, with many settings for customization.
 
 # Usage
-To run, just double on the downloaded file, Also must have java installed, preferably java 17.
+To run, just double on the downloaded file, Also must have java installed. Any Java version between 8-17 will work.
 ![Drawing](https://user-images.githubusercontent.com/64995932/148468430-557dc2f6-be2c-4990-9019-cf3f57ad7111.png)
 **IP:** Take an ip from any server you already have in your list, you may get more results if it is a server from a hosting company, as they put many servers on the same IP.
 
