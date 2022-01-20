@@ -171,6 +171,7 @@ public class App {
                 mcHandShake(App.startIP, (App.startPort + counter.incrementAndGet()));
                 latch.countDown();
          }};
+        Thread.sleep(500);
         for (double i = 0.0; i < limit; i++) {
             if (i % 100 == 0) {
                 try {
